@@ -47,7 +47,7 @@ def require_is_admin
 private
 
 def job_params
-  params.require(:job).permit(:title, :desciption)
+  params.require(:job).permit(:title, :desciption, :wage_upper_bound, :wage_lower_bound, :contact_email)
 
 end
 def require_is_admin
@@ -57,4 +57,6 @@ def require_is_admin
     end
   end
 
+
+end
 end
