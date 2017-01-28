@@ -2,17 +2,24 @@ Rails.application.routes.draw do
 
 
    devise_for :users
-   namespace :admin do
    resources :jobs do
+     resources :resumes
+     collection do
+       get :search
+     end
+   end
+   namespace :admin do
+     resources :jobs do
+       member do
+         post :publish
+         post :hide
+       end
+       resources :resumes
+     end
+   end
 
-     member do
-        post :publish
-        post :hide
-      end
-  end
-end
-resources :jobs do
-  resources :resumes
-end
-  root 'jobs#index'
-end
+   resources :welcome
+   get 'about', to: 'jobs#about'
+
+   root 'welcome#index'
+ end
